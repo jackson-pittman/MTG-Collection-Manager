@@ -26,7 +26,9 @@ public class UserInfo
     @Enumerated(EnumType.STRING)
     @Column(nullable=false)
     private Status status;
-
+    /*
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Card> cards;
+
+     */
 }
