@@ -5,14 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.List;
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class UserInfo
+
+public class UserInfo implements Serializable
 {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,6 +31,8 @@ public class UserInfo
     @Enumerated(EnumType.STRING)
     @Column(nullable=false)
     private Status status;
+
+    private static final long serialVersionUID = 1L;
     /*
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Card> cards;
