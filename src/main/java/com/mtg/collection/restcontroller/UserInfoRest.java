@@ -1,5 +1,6 @@
 package com.mtg.collection.restcontroller;
 
+import com.mtg.collection.entity.AuthRequest;
 import com.mtg.collection.entity.UserInfo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ public interface UserInfoRest
 
     @PostMapping(path = "/addUser")
     ResponseEntity<?> addNewUser(@RequestBody UserInfo userInfo);
+
+    @PostMapping(path = "/login")
+    ResponseEntity<?> login(@RequestBody AuthRequest authRequest);
     /*
     @DeleteMapping("/delete/{id}")
     ResponseEntity<String> deleteStudent(@PathVariable Long id);

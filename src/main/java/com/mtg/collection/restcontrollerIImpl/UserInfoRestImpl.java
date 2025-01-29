@@ -1,5 +1,6 @@
 package com.mtg.collection.restcontrollerIImpl;
 
+import com.mtg.collection.entity.AuthRequest;
 import com.mtg.collection.entity.UserInfo;
 import com.mtg.collection.restcontroller.UserInfoRest;
 import com.mtg.collection.service.UserInfoService;
@@ -32,6 +33,21 @@ public class UserInfoRestImpl implements UserInfoRest
         catch (Exception e)
         {
             log.error("Exception in addNewUser : {} ",e);
+            map.put("message", "Something went wrong");
+        }
+        return new ResponseEntity<>("{\"message\":\"Something went wrong\"}", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @Override
+    public ResponseEntity<?> login(AuthRequest authRequest)
+    {
+        try
+        {
+            return userInfoService.login(authRequest);
+        }
+        catch (Exception e)
+        {
+            log.error("Exception in login : {} ",e);
             map.put("message", "Something went wrong");
         }
         return new ResponseEntity<>("{\"message\":\"Something went wrong\"}", HttpStatus.INTERNAL_SERVER_ERROR);
