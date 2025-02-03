@@ -60,8 +60,8 @@ public class UserInfoServiceImpl implements UserInfoService
             {
                 return new ResponseEntity<>("{\"message\":\"Email Already Exists.\"}", HttpStatus.CONFLICT);
             }
-            userInfo.setPassword(userInfo.getPassword());
-            userInfo.setStatus(Status.INACTIVE);
+            userInfo.setPassword(encoder.encode(userInfo.getPassword()));
+            userInfo.setStatus(Status.ACTIVE);
             userInfo.setRole(Role.USER);
             userInfo.setEmail(userInfo.getEmail().toLowerCase());
             userInfoRepository.save(userInfo);
