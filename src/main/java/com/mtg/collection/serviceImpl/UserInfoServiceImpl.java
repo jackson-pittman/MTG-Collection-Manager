@@ -112,6 +112,20 @@ public class UserInfoServiceImpl implements UserInfoService
         return new ResponseEntity<>("{\"message\":\"Something went wrong\"}", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @Override
+    public ResponseEntity<?> getAllUsers()
+    {
+        try
+        {
+            return new ResponseEntity<>(userInfoRepository.findAll(), HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            log.error("Exception in getAllUsers : {}", e.getMessage());
+        }
+        return new ResponseEntity<>("{\"message\":\"Something went wrong\"}", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     private Boolean validateUser(UserInfo userInfo)
     {
         return !Objects.isNull(userInfo) && StringUtils.hasText(userInfo.getUsername())

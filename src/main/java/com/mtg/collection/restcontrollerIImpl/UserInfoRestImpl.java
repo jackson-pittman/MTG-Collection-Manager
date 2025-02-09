@@ -52,4 +52,19 @@ public class UserInfoRestImpl implements UserInfoRest
         }
         return new ResponseEntity<>("{\"message\":\"Something went wrong\"}", HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @Override
+    public ResponseEntity<?> getAllUsers()
+    {
+        try
+        {
+            return userInfoService.getAllUsers();
+        }
+        catch (Exception e)
+        {
+            log.error("Exception in getAllUsers : {} ",e);
+            map.put("message", "Something went wrong");
+        }
+        return new ResponseEntity<>("{\"message\":\"Something went wrong\"}", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

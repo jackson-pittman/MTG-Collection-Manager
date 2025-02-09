@@ -10,4 +10,6 @@ public interface UserInfoService
     ResponseEntity<?> addNewUser(UserInfo userInfo);
 
     ResponseEntity<?> login(AuthRequest authRequest);
+
+    ResponseEntity<?> getAllUsers();
 }

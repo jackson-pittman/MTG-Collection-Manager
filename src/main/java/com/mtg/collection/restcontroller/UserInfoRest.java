@@ -25,9 +25,9 @@ public interface UserInfoRest
     @PutMapping("/update/{id}")
     ResponseEntity<UserInfo> updateUser(@PathVariable Long id, @RequestBody UserInfo userInfo);
     */
-    /*
-    @GetMapping("/{email}")
-    ResponseEntity<UserInfo> findUserByEmail(@PathVariable String email);
-    */
+
+    @GetMapping(path = "/getAllUsers")
+    ResponseEntity<?> getAllUsers();
+
 
 }

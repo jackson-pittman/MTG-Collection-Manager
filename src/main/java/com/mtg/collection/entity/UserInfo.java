@@ -5,6 +5,8 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
+@NamedQuery(name = "UserInfo.getAllUsers", query = "select new com.mtg.collection.entity.UserInfo(u.id, u.username, u.email, u.status) from UserInfo u where u.isDeletable = true and u.email not in (:email)")
+
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
@@ -63,6 +65,14 @@ public class UserInfo implements Serializable
 
     public Long getId() {
         return id;
+    }
+
+    public UserInfo(Long id, String username, String email, Status status)
+    {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.status = status;
     }
 
     public void setId(Long id) {
