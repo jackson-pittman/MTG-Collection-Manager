@@ -117,7 +117,7 @@ public class UserInfoServiceImpl implements UserInfoService
     {
         try
         {
-            return new ResponseEntity<>(userInfoRepository.findAll(), HttpStatus.OK);
+            return new ResponseEntity<>(userInfoRepository.getAllUsers(jwtAuthFilter.getEmail()), HttpStatus.OK);
         }
         catch (Exception e)
         {
