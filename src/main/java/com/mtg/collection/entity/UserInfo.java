@@ -6,7 +6,7 @@ import lombok.*;
 import java.io.Serializable;
 import java.util.List;
 @NamedQuery(name = "UserInfo.getAllUsers", query = "select new com.mtg.collection.entity.UserInfo(u.id, u.username, u.email, u.status) from UserInfo u where u.isDeletable = true and u.email not in (:email)")
-
+@NamedQuery(name = "UserInfo.updateUser", query = "update UserInfo u set u.status = :status where u.id = :id and isDeletable = true")
 @Entity
 @Table(name = "users")
 @NoArgsConstructor

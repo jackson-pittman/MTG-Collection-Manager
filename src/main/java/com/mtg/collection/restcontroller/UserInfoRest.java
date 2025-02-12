@@ -21,13 +21,16 @@ public interface UserInfoRest
     @DeleteMapping("/delete/{id}")
     ResponseEntity<String> deleteStudent(@PathVariable Long id);
     */
-    /*
-    @PutMapping("/update/{id}")
-    ResponseEntity<UserInfo> updateUser(@PathVariable Long id, @RequestBody UserInfo userInfo);
-    */
+
+    @PostMapping("/updateUserStatus")
+    ResponseEntity<?> updateUser(@RequestBody UserInfo userInfo);
+
 
     @GetMapping(path = "/getAllUsers")
     ResponseEntity<?> getAllUsers();
+
+    @GetMapping("/checkToken")
+    ResponseEntity<?> checkToken();
 
 
 }

@@ -126,6 +126,44 @@ public class UserInfoServiceImpl implements UserInfoService
         return new ResponseEntity<>("{\"message\":\"Something went wrong\"}", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @Override
+    public ResponseEntity<?> updateUser(UserInfo userInfo)
+    {
+        try
+        {
+            if(!Objects.isNull(userInfo) && !Objects.isNull(userInfo.getId()) && !Objects.isNull(userInfo.getStatus()))
+            {
+                Optional<UserInfo> db = userInfoRepository.findById(userInfo.getId());
+                if(db.isPresent())
+                {
+                    UserInfo user = db.get();
+                    user.setStatus(userInfo.getStatus());
+                    userInfoRepository.save(user);
+                    return new ResponseEntity<>("{\"message\":\"User Status Updated.\"}", HttpStatus.OK);
+                }
+                else
+                {
+                    return new ResponseEntity<>("{\"message\":\"User Not Found.\"}", HttpStatus.NOT_FOUND);
+                }
+            }
+            else
+            {
+                return new ResponseEntity<>("{\"message\":\"Missing Required Data.\"}", HttpStatus.BAD_REQUEST);
+            }
+        }
+        catch (Exception e)
+        {
+            log.error("Exception in updateUser : {}", e.getMessage());
+        }
+        return new ResponseEntity<>("{\"message\":\"Something went wrong\"}", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @Override
+    public ResponseEntity<?> checkToken()
+    {
+        return new ResponseEntity<>("{\"message\":\"true\"}", HttpStatus.OK);
+    }
+
     private Boolean validateUser(UserInfo userInfo)
     {
         return !Objects.isNull(userInfo) && StringUtils.hasText(userInfo.getUsername())

@@ -12,4 +12,8 @@ public interface UserInfoService
     ResponseEntity<?> login(AuthRequest authRequest);
 
     ResponseEntity<?> getAllUsers();
+
+    ResponseEntity<?> updateUser(UserInfo userInfo);
+
+    ResponseEntity<?> checkToken();
 }
