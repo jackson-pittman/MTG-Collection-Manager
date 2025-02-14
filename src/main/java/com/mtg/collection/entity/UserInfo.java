@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Data
 
 public class UserInfo implements Serializable
 {

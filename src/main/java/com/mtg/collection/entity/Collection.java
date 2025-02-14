@@ -10,29 +10,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "cards")
+@Table(name = "collections")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
-public class Card implements Serializable
+public class Collection implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+
     private String name;
-    private String type;
-    private String rarity;
-    @Column(length=1000)
     private String description;
-    private String imageUrl;
-    private Integer collectorNumber;
-    private Integer convertedManaCost;
-    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private UserInfo owner;
+
+    @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CollectionCard> collectionCards = new ArrayList<>();
 
     private static final long serialVersionUID = 1L;
-
-
 }
